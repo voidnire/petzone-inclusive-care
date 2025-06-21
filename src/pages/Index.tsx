@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { Dashboard } from "@/components/Dashboard";
 import { PetManagement } from "@/components/PetManagement";
 import { MedicalRecords } from "@/components/MedicalRecords";
-import { Reminders } from "@/components/Reminders";
+import { Clinics } from "@/components/Clinics";
 import { EducationalContent } from "@/components/EducationalContent";
 import { Chatbot } from "@/components/Chatbot";
 import { Navigation } from "@/components/Navigation";
@@ -18,8 +19,8 @@ const Index = () => {
         return <PetManagement />;
       case "records":
         return <MedicalRecords />;
-      case "reminders":
-        return <Reminders />;
+      case "clinics":
+        return <Clinics />;
       case "chatbot":
         return <Chatbot />;
       case "education":

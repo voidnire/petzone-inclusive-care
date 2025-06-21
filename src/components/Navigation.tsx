@@ -1,4 +1,5 @@
-import { Users, Calendar, FileText, Bell, BookOpen, Home, Bot } from "lucide-react";
+
+import { Users, Calendar, FileText, MapPin, BookOpen, Home, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface NavigationProps {
@@ -11,7 +12,7 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
     { id: "dashboard", label: "Dashboard", icon: Home },
     { id: "pets", label: "Meus Pets", icon: Users },
     { id: "records", label: "Prontuário", icon: FileText },
-    { id: "reminders", label: "Lembretes", icon: Bell },
+    { id: "clinics", label: "Clínicas", icon: MapPin },
     { id: "chatbot", label: "Miaubot", icon: Bot },
     { id: "education", label: "Educação", icon: BookOpen },
   ];
