@@ -8,28 +8,34 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { FileText, Plus, Calendar, Image, Users, MapPin } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { FileText, Plus, Calendar, Image, Users, MapPin, Filter, Search } from "lucide-react";
 
 export const MedicalRecords = () => {
   const pets = ["Luna", "Max", "Buddy"];
   const [selectedPet, setSelectedPet] = useState("Luna");
+  const [examFilter, setExamFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const medicalHistory = [
     {
       id: 1,
       date: "15/12/2024",
       type: "Consulta de rotina",
+      examType: "exame_sangue",
       vet: "Dr. Silva",
       clinic: "VetCare Centro",
       diagnosis: "Animal saudável",
       treatment: "Vermífugo administrado",
-      notes: "Pet apresenta ótimo estado geral. Recomendado retorno em 6 meses.",
-      files: ["exame_sangue.pdf", "raio_x.jpg"]
+      notes: "Pet apresenta ótimo estado geral. Hemograma completo normal. Recomendado retorno em 6 meses.",
+      files: ["exame_sangue.pdf", "hemograma_completo.pdf"],
+      results: "Hemoglobina: 14.2 g/dL, Leucócitos: 8.500/μL, Plaquetas: 350.000/μL"
     },
     {
       id: 2,
       date: "20/10/2024",
       type: "Vacinação",
+      examType: "vacina",
       vet: "Dra. Costa",
       clinic: "Pet Hospital",
       diagnosis: "Imunização",
@@ -41,14 +47,58 @@ export const MedicalRecords = () => {
       id: 3,
       date: "05/08/2024",
       type: "Cirurgia",
+      examType: "cirurgia",
       vet: "Dr. Oliveira",
       clinic: "Clínica Animal",
       diagnosis: "Castração eletiva",
       treatment: "Ovariohisterectomia",
       notes: "Cirurgia realizada com sucesso. Repouso de 10 dias.",
       files: ["relatorio_cirurgico.pdf", "pos_operatorio.jpg"]
+    },
+    {
+      id: 4,
+      date: "10/06/2024",
+      type: "Exame de Urina",
+      examType: "exame_urina",
+      vet: "Dr. Silva",
+      clinic: "VetCare Centro",
+      diagnosis: "Urina normal",
+      treatment: "Nenhum tratamento necessário",
+      notes: "Exame de urina tipo I normal. Densidade: 1.025, pH: 6.5",
+      files: ["exame_urina.pdf"],
+      results: "Densidade: 1.025, pH: 6.5, Proteínas: negativo, Glicose: negativo"
+    },
+    {
+      id: 5,
+      date: "25/04/2024",
+      type: "Raio-X",
+      examType: "raio_x",
+      vet: "Dra. Costa",
+      clinic: "Pet Hospital",
+      diagnosis: "Artrose leve",
+      treatment: "Anti-inflamatório prescrito",
+      notes: "Raio-X revela sinais iniciais de artrose. Recomendado controle de peso.",
+      files: ["raio_x_coluna.jpg", "laudo_radiologico.pdf"],
+      results: "Sinais iniciais de artrose em coluna lombar"
     }
   ];
+
+  const examTypes = [
+    { value: "all", label: "Todos os Exames" },
+    { value: "exame_sangue", label: "Exames de Sangue" },
+    { value: "exame_urina", label: "Exames de Urina" },
+    { value: "raio_x", label: "Raio-X" },
+    { value: "vacina", label: "Vacinação" },
+    { value: "cirurgia", label: "Cirurgias" }
+  ];
+
+  const filteredHistory = medicalHistory.filter(record => {
+    const matchesExamType = examFilter === "all" || record.examType === examFilter;
+    const matchesSearch = record.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         record.diagnosis.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         record.vet.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesExamType && matchesSearch;
+  });
 
   const vaccinations = [
     { vaccine: "V10", date: "20/10/2024", next: "20/10/2025", status: "em_dia" },
@@ -58,8 +108,10 @@ export const MedicalRecords = () => {
 
   const documents = [
     { name: "Carteira de Vacinação", type: "PDF", size: "1.2 MB", date: "20/10/2024" },
-    { name: "Exame de Sangue", type: "PDF", size: "856 KB", date: "15/12/2024" },
+    { name: "Exame de Sangue - Dezembro", type: "PDF", size: "856 KB", date: "15/12/2024" },
+    { name: "Hemograma Completo", type: "PDF", size: "742 KB", date: "15/12/2024" },
     { name: "Raio-X Tórax", type: "JPG", size: "2.4 MB", date: "15/12/2024" },
+    { name: "Exame de Urina", type: "PDF", size: "623 KB", date: "10/06/2024" },
     { name: "Receita Médica", type: "PDF", size: "345 KB", date: "15/12/2024" },
   ];
 
@@ -140,14 +192,52 @@ export const MedicalRecords = () => {
       {/* Tabs */}
       <Tabs defaultValue="history" className="space-y-6">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="history">Histórico Médico</TabsTrigger>
+          <TabsTrigger value="history">Histórico do Animal</TabsTrigger>
           <TabsTrigger value="vaccinations">Vacinação</TabsTrigger>
           <TabsTrigger value="documents">Documentos</TabsTrigger>
         </TabsList>
 
         <TabsContent value="history" className="space-y-4">
+          {/* Filters */}
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+              <Input
+                placeholder="Buscar por tipo, diagnóstico ou veterinário..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Filter className="h-4 w-4 text-slate-600" />
+              <Select value={examFilter} onValueChange={setExamFilter}>
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="Filtrar por tipo de exame" />
+                </SelectTrigger>
+                <SelectContent>
+                  {examTypes.map(type => (
+                    <SelectItem key={type.value} value={type.value}>
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Results Summary */}
+          <div className="bg-slate-50 p-4 rounded-lg">
+            <p className="text-sm text-slate-600">
+              Mostrando <strong>{filteredHistory.length}</strong> registros 
+              {examFilter !== "all" && ` filtrados por "${examTypes.find(t => t.value === examFilter)?.label}"`}
+              {searchTerm && ` com busca por "${searchTerm}"`}
+            </p>
+          </div>
+
           <div className="space-y-4">
-            {medicalHistory.map((record) => (
+            {filteredHistory.map((record) => (
               <Card key={record.id} className="card-hover">
                 <CardHeader>
                   <div className="flex justify-between items-start">
@@ -183,6 +273,13 @@ export const MedicalRecords = () => {
                     </div>
                   </div>
                   
+                  {record.results && (
+                    <div>
+                      <h4 className="font-semibold text-slate-900 mb-2">Resultados dos Exames</h4>
+                      <p className="text-sm text-slate-600 bg-blue-50 p-3 rounded-lg">{record.results}</p>
+                    </div>
+                  )}
+                  
                   <div>
                     <h4 className="font-semibold text-slate-900 mb-2">Observações</h4>
                     <p className="text-sm text-slate-600">{record.notes}</p>
@@ -205,6 +302,18 @@ export const MedicalRecords = () => {
               </Card>
             ))}
           </div>
+
+          {filteredHistory.length === 0 && (
+            <div className="text-center py-12">
+              <FileText className="h-12 w-12 text-slate-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-600 mb-2">
+                Nenhum registro encontrado
+              </h3>
+              <p className="text-slate-500">
+                Tente ajustar os filtros de busca ou adicionar um novo registro médico.
+              </p>
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="vaccinations" className="space-y-4">
