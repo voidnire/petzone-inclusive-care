@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,6 +15,7 @@ export const Clinics = () => {
       name: "Clínica Veterinária PetCare",
       address: "Rua das Flores, 123 - Centro",
       phone: "(11) 9999-8888",
+      whatsapp: "(11) 99999-8888",
       rating: 4.8,
       reviews: 127,
       distance: "1.2 km",
@@ -23,13 +23,20 @@ export const Clinics = () => {
       openHours: "08:00 - 18:00",
       image: "🏥",
       isOpen: true,
-      priceRange: "$$"
+      priceRange: "$$",
+      accessibility: {
+        visualImpairment: true,
+        wheelchairAccess: true,
+        brailleSignage: false,
+        audioGuidance: true
+      }
     },
     {
       id: 2,
       name: "Hospital Veterinário Animal Life",
       address: "Av. Principal, 456 - Jardins",
       phone: "(11) 8888-7777",
+      whatsapp: "(11) 98888-7777",
       rating: 4.9,
       reviews: 203,
       distance: "2.1 km",
@@ -37,13 +44,20 @@ export const Clinics = () => {
       openHours: "24 horas",
       image: "🏨",
       isOpen: true,
-      priceRange: "$$$"
+      priceRange: "$$$",
+      accessibility: {
+        visualImpairment: true,
+        wheelchairAccess: true,
+        brailleSignage: true,
+        audioGuidance: true
+      }
     },
     {
       id: 3,
       name: "Clínica Bichos & Cia",
       address: "Rua dos Animais, 789 - Vila Nova",
       phone: "(11) 7777-6666",
+      whatsapp: "(11) 97777-6666",
       rating: 4.5,
       reviews: 89,
       distance: "3.5 km",
@@ -51,13 +65,20 @@ export const Clinics = () => {
       openHours: "07:00 - 19:00",
       image: "🐾",
       isOpen: true,
-      priceRange: "$"
+      priceRange: "$",
+      accessibility: {
+        visualImpairment: false,
+        wheelchairAccess: true,
+        brailleSignage: false,
+        audioGuidance: false
+      }
     },
     {
       id: 4,
       name: "Centro Veterinário Especializado",
       address: "Rua Especialista, 321 - Bela Vista",
       phone: "(11) 6666-5555",
+      whatsapp: "(11) 96666-5555",
       rating: 4.7,
       reviews: 156,
       distance: "4.2 km",
@@ -65,7 +86,13 @@ export const Clinics = () => {
       openHours: "08:00 - 17:00",
       image: "🔬",
       isOpen: false,
-      priceRange: "$$$"
+      priceRange: "$$$",
+      accessibility: {
+        visualImpairment: true,
+        wheelchairAccess: true,
+        brailleSignage: true,
+        audioGuidance: true
+      }
     }
   ];
 
@@ -98,13 +125,22 @@ export const Clinics = () => {
     }
   };
 
+  const getAccessibilityBadges = (accessibility: any) => {
+    const badges = [];
+    if (accessibility.visualImpairment) badges.push("Deficiência Visual");
+    if (accessibility.wheelchairAccess) badges.push("Cadeira de Rodas");
+    if (accessibility.brailleSignage) badges.push("Braille");
+    if (accessibility.audioGuidance) badges.push("Áudio Guia");
+    return badges;
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div>
           <h2 className="text-3xl font-bold text-slate-900">Clínicas Veterinárias</h2>
-          <p className="text-slate-600 mt-1">Encontre a clínica ideal para o seu pet.</p>
+          <p className="text-slate-600 mt-1">Encontre a clínica ideal para o seu pet com recursos de acessibilidade.</p>
         </div>
       </div>
 
@@ -230,6 +266,21 @@ export const Clinics = () => {
                 </Badge>
               </div>
 
+              {/* Accessibility Section */}
+              <div>
+                <p className="text-sm font-medium text-slate-700 mb-2">Acessibilidade:</p>
+                <div className="flex flex-wrap gap-2">
+                  {getAccessibilityBadges(clinic.accessibility).map((badge, index) => (
+                    <Badge key={index} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                      {badge}
+                    </Badge>
+                  ))}
+                  {getAccessibilityBadges(clinic.accessibility).length === 0 && (
+                    <span className="text-xs text-slate-500">Informações não disponíveis</span>
+                  )}
+                </div>
+              </div>
+
               <div>
                 <p className="text-sm font-medium text-slate-700 mb-2">Especialidades:</p>
                 <div className="flex flex-wrap gap-2">
@@ -245,8 +296,11 @@ export const Clinics = () => {
                 <Button variant="outline" className="flex-1">
                   Ver Detalhes
                 </Button>
-                <Button className="flex-1 bg-pet-blue hover:bg-blue-600">
-                  Agendar Consulta
+                <Button 
+                  className="flex-1 bg-pet-blue hover:bg-blue-600"
+                  onClick={() => window.open(`https://wa.me/${clinic.whatsapp.replace(/\D/g, '')}`, '_blank')}
+                >
+                  WhatsApp
                 </Button>
               </div>
             </CardContent>

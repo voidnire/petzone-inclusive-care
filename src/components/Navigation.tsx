@@ -1,5 +1,5 @@
 
-import { Users, Calendar, FileText, MapPin, BookOpen, Home, Bot } from "lucide-react";
+import { Users, Calendar, FileText, MapPin, BookOpen, Home, Bot, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface NavigationProps {
@@ -13,6 +13,7 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
     { id: "pets", label: "Meus Pets", icon: Users },
     { id: "records", label: "Histórico do Animal", icon: FileText },
     { id: "clinics", label: "Clínicas", icon: MapPin },
+    { id: "initiatives", label: "Iniciativas Públicas", icon: BookOpen },
   ];
 
   return (
@@ -43,6 +44,15 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
                 </Button>
               );
             })}
+            
+            <Button
+              variant="ghost"
+              className="flex items-center space-x-2 text-pet-green"
+              title="Navegação por Voz"
+            >
+              <Mic size={18} />
+              <span className="hidden lg:inline">Voz</span>
+            </Button>
           </div>
 
           <div className="md:hidden">
