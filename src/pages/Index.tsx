@@ -4,8 +4,6 @@ import { Dashboard } from "@/components/Dashboard";
 import { PetManagement } from "@/components/PetManagement";
 import { MedicalRecords } from "@/components/MedicalRecords";
 import { Clinics } from "@/components/Clinics";
-import { EducationalContent } from "@/components/EducationalContent";
-import { Chatbot } from "@/components/Chatbot";
 import { Navigation } from "@/components/Navigation";
 
 const Index = () => {
@@ -21,10 +19,6 @@ const Index = () => {
         return <MedicalRecords />;
       case "clinics":
         return <Clinics />;
-      case "chatbot":
-        return <Chatbot />;
-      case "education":
-        return <EducationalContent />;
       default:
         return <Dashboard />;
     }

@@ -13,8 +13,6 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
     { id: "pets", label: "Meus Pets", icon: Users },
     { id: "records", label: "Histórico do Animal", icon: FileText },
     { id: "clinics", label: "Clínicas", icon: MapPin },
-    { id: "chatbot", label: "Miaubot", icon: Bot },
-    { id: "education", label: "Educação", icon: BookOpen },
   ];
 
   return (

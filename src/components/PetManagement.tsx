@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -260,18 +259,10 @@ export const PetManagement = () => {
                 </div>
               </div>
 
-              <div className="flex space-x-2 pt-2">
-                <Button variant="outline" size="sm" className="flex-1">
+              <div className="flex justify-center pt-2">
+                <Button variant="outline" size="sm" className="w-full">
                   <Edit className="mr-2 h-4 w-4" />
                   Editar
-                </Button>
-                <Button variant="outline" size="sm" className="flex-1">
-                  <FileText className="mr-2 h-4 w-4" />
-                  Prontuário
-                </Button>
-                <Button variant="outline" size="sm" className="flex-1">
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Agendar
                 </Button>
               </div>
             </CardContent>
@@ -297,7 +288,7 @@ export const PetManagement = () => {
             
             <Button variant="outline" className="p-6 h-auto flex-col space-y-2">
               <FileText className="h-8 w-8 text-pet-green" />
-              <span className="font-semibold">Ver Prontuários</span>
+              <span className="font-semibold">Ver Histórico</span>
               <span className="text-sm text-slate-500">Histórico médico completo</span>
             </Button>
             
