@@ -21,10 +21,10 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 pet-gradient rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-pet-primary to-pet-accent rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">🐾</span>
             </div>
-            <h1 className="text-xl font-bold text-pet-blue">PetZone</h1>
+            <h1 className="text-xl font-bold text-pet-primary">PetZone</h1>
           </div>
           
           <div className="hidden md:flex space-x-2">
@@ -36,7 +36,7 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
                   variant={activeTab === item.id ? "default" : "ghost"}
                   onClick={() => setActiveTab(item.id)}
                   className={`flex items-center space-x-2 ${
-                    activeTab === item.id ? "bg-pet-blue text-white" : ""
+                    activeTab === item.id ? "bg-pet-primary text-white hover:bg-pet-secondary" : "hover:bg-pet-tertiary/10 hover:text-pet-primary"
                   }`}
                 >
                   <Icon size={18} />
@@ -47,7 +47,7 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
             
             <Button
               variant="ghost"
-              className="flex items-center space-x-2 text-pet-green"
+              className="flex items-center space-x-2 text-pet-accent hover:bg-pet-accent/10"
               title="Navegação por Voz"
             >
               <Mic size={18} />

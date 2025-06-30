@@ -5,71 +5,71 @@
 
 @layer base {
   :root {
-    --background: 248 250 252;
-    --foreground: 15 23 42;
+    --background: 255 255 255;
+    --foreground: 3 50 79;
 
     --card: 255 255 255;
-    --card-foreground: 15 23 42;
+    --card-foreground: 3 50 79;
 
     --popover: 255 255 255;
-    --popover-foreground: 15 23 42;
+    --popover-foreground: 3 50 79;
 
-    --primary: 59 130 246;
-    --primary-foreground: 248 250 252;
+    --primary: 3 50 79;
+    --primary-foreground: 255 255 255;
 
-    --secondary: 241 245 249;
-    --secondary-foreground: 51 65 85;
+    --secondary: 253 155 18;
+    --secondary-foreground: 255 255 255;
 
     --muted: 248 250 252;
-    --muted-foreground: 100 116 139;
+    --muted-foreground: 8 83 99;
 
-    --accent: 34 197 94;
-    --accent-foreground: 248 250 252;
+    --accent: 18 206 253;
+    --accent-foreground: 3 50 79;
 
     --destructive: 239 68 68;
     --destructive-foreground: 248 250 252;
 
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 59 130 246;
+    --ring: 3 50 79;
 
     --radius: 0.75rem;
 
-    --pet-blue: 59 130 246;
-    --pet-green: 34 197 94;
-    --pet-purple: 139 92 246;
-    --pet-orange: 251 146 60;
-    --pet-pink: 236 72 153;
+    --pet-blue: 3 50 79;
+    --pet-green: 8 83 99;
+    --pet-purple: 18 206 253;
+    --pet-orange: 253 155 18;
+    --pet-pink: 253 155 18;
   }
 
   .dark {
-    --background: 2 6 23;
-    --foreground: 248 250 252;
+    --background: 3 50 79;
+    --foreground: 255 255 255;
 
-    --card: 15 23 42;
-    --card-foreground: 248 250 252;
+    --card: 8 83 99;
+    --card-foreground: 255 255 255;
 
-    --popover: 15 23 42;
-    --popover-foreground: 248 250 252;
+    --popover: 8 83 99;
+    --popover-foreground: 255 255 255;
 
-    --primary: 59 130 246;
-    --primary-foreground: 15 23 42;
+    --primary: 18 206 253;
+    --primary-foreground: 3 50 79;
 
-    --secondary: 30 41 59;
-    --secondary-foreground: 203 213 225;
+    --secondary: 253 155 18;
+    --secondary-foreground: 3 50 79;
 
-    --muted: 30 41 59;
+    --muted: 8 83 99;
     --muted-foreground: 148 163 184;
 
-    --accent: 34 197 94;
-    --accent-foreground: 15 23 42;
+    --accent: 18 206 253;
+    --accent-foreground: 3 50 79;
 
     --destructive: 220 38 38;
     --destructive-foreground: 248 250 252;
 
-    --border: 30 41 59;
-    --input: 30 41 59;
-    --ring: 59 130 246;
+    --border: 8 83 99;
+    --input: 8 83 99;
+    --ring: 18 206 253;
   }
 }
 
@@ -86,7 +86,7 @@
 
 @layer utilities {
   .pet-gradient {
-    background: linear-gradient(135deg, hsl(var(--pet-blue)) 0%, hsl(var(--pet-green)) 100%);
+    background: linear-gradient(135deg, hsl(var(--pet-blue)) 0%, hsl(var(--pet-orange)) 100%);
   }
   
   .card-hover {
@@ -101,11 +101,27 @@
     color: hsl(var(--pet-green));
   }
   
+  .text-pet-purple {
+    color: hsl(var(--pet-purple));
+  }
+  
+  .text-pet-orange {
+    color: hsl(var(--pet-orange));
+  }
+  
   .bg-pet-blue {
     background-color: hsl(var(--pet-blue));
   }
   
   .bg-pet-green {
     background-color: hsl(var(--pet-green));
+  }
+  
+  .bg-pet-purple {
+    background-color: hsl(var(--pet-purple));
+  }
+  
+  .bg-pet-orange {
+    background-color: hsl(var(--pet-orange));
   }
 }

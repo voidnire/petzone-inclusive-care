@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Nova paleta personalizada
+				'pet-primary': '#03324F',
+				'pet-secondary': '#085363', 
+				'pet-tertiary': '#12CEFD',
+				'pet-accent': '#FD9B12'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
