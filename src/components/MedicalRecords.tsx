@@ -120,7 +120,7 @@ export const MedicalRecords = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Prontuário Eletrônico</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Histórico do Animal</h2>
           <p className="text-slate-600 mt-1">Histórico médico completo dos seus pets.</p>
         </div>
         

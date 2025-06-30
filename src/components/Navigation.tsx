@@ -11,7 +11,7 @@ export const Navigation = ({ activeTab, setActiveTab }: NavigationProps) => {
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
     { id: "pets", label: "Meus Pets", icon: Users },
-    { id: "records", label: "Prontuário", icon: FileText },
+    { id: "records", label: "Histórico do Animal", icon: FileText },
     { id: "clinics", label: "Clínicas", icon: MapPin },
     { id: "chatbot", label: "Miaubot", icon: Bot },
     { id: "education", label: "Educação", icon: BookOpen },
